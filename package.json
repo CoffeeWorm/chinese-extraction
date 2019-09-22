@@ -1,0 +1,28 @@
+{
+  "name": "chinese-extraction",
+  "version": "1.0.0",
+  "description": "A script for extracting Chinese.",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node ./index.ts"
+  },
+  "author": "CoffeeWorm",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/ejs": "^2.6.3",
+    "@types/node": "^12.7.5",
+    "@typescript-eslint/eslint-plugin": "^2.3.0",
+    "@typescript-eslint/parser": "^2.3.0",
+    "eslint": "^6.4.0",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "echarts": "^4.3.0",
+    "ejs": "^2.7.1",
+    "normalize.css": "^8.0.1",
+    "vue": "^2.6.10",
+    "vue-echarts": "^4.0.4"
+  }
+}
