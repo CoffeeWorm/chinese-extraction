@@ -7,7 +7,7 @@ export function removeComments(str: string): string {
 
 export function cauculate(content: string, targetPath: string) {
   let result: file = { path: targetPath, numbers: 0, chinese: [] };
-  content.replace(/[\u4e00-\u9fa5\r\n]+/gim, chinese => {
+  content.replace(/[\u4e00-\u9fa5]+/gim, chinese => {
     result.numbers++;
     result.chinese.push(chinese);
     return chinese;
@@ -15,10 +15,7 @@ export function cauculate(content: string, targetPath: string) {
   return result;
 }
 
-export function isPathLegal(tar: string): boolean {
-  if (!fs.existsSync(tar)) {
-    return false;
-  }
+export function isFileLegal(tar: string): boolean {
   const stat = fs.statSync(tar);
   if (!stat.isDirectory()) {
     return /\.(t|j)sx?$/.test(tar);
