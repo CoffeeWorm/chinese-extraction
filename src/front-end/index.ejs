@@ -8,6 +8,8 @@
     <title>结果展示</title>
   </head>
   <body>
+    <h1>中文总量: <%= total %></h1>
+    <div id="bar"></div>
     <div id="pie"></div>
     <script src="./node_modules/vue/dist/vue.min.js"></script>
     <script src="./node_modules/echarts/dist/echarts.min.js"></script>
@@ -31,7 +33,7 @@
                 right: 10,
                 top: 20,
                 bottom: 20,
-                data: <%- JSON.stringify(legend) %>
+                data: <%- JSON.stringify(legend)%>
               },
               series: [
                 {
@@ -39,13 +41,63 @@
                   type: 'pie',
                   radius: '65%',
                   center: ['50%', '50%'],
-                  data: <%- JSON.stringify(data) %>
+                  data: <%- JSON.stringify(pieData)%>
                 }
               ]
             }
           };
         }
       });
+      new Vue({
+        el: document.getElementById('bar'),
+        template: '<v-chart :options="options" :autoresize="true"/>',
+        data: function(){
+          return {
+            options: {
+              xAxis: {
+                type: 'category',
+                data: <%- JSON.stringify(legend)%>
+              },
+              tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+              },
+              dataZoom: [
+                { show: true, },
+                { type: 'inside', },
+              {
+                  show: true,
+                  yAxisIndex: 0,
+                  filterMode: 'empty',
+                  width: 30,
+                  height: '80%',
+                  showDataShadow: false,
+                  left: '93%'
+              }
+               ],
+              legend: {
+                type: 'scroll',
+                orient: 'vertical',
+                right: 10,
+                top: 20,
+                bottom: 20,
+                data: <%- JSON.stringify(legend)%>
+              },
+              yAxis: {
+                name: 'number of Chinese',
+                type: 'value'
+              },
+              series: [{
+                name: 'files',
+                data:<%- JSON.stringify(barData)%>,
+                type: 'bar'
+              }]
+            }
+          };
+        }
+      })
     </script>
     <style>
       .echarts {

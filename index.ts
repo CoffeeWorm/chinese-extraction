@@ -13,10 +13,15 @@ ejs.renderFile(
   './src/front-end/index.ejs',
   {
     legend: Object.keys(result),
-    data: Object.keys(result).map(key => ({
+    pieData: Object.keys(result).map(key => ({
       value: result[key].numbers,
       name: key
-    }))
+    })),
+    barData: Object.keys(result).map(key => result[key].numbers),
+    total: Object.keys(result).reduce(
+      (sum, key) => sum + result[key].numbers,
+      0
+    )
   },
   (err, html) => {
     if (err) {
